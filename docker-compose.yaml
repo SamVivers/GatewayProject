@@ -22,7 +22,7 @@ services:
                 container_name: email-service
                 environment:
                 - GMAIL_USER=ilovedocker123@gmail.com
-                - GMAIL_PASS=ilovedocker!
+                - GMAIL_PASS=ilovedocker1!
                 - SERVICE_NAME=emailer
                 depends_on:
                 - mongo-service
@@ -41,6 +41,7 @@ services:
                 container_name: session-token-service
                 depends_on:
                 - aes-encryption-service
+                - mongo-service
         dashboard-service:
                 build: ./dashboard-service
                 container_name: dashboard-service
