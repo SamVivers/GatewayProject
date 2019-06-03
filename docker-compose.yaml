@@ -6,12 +6,73 @@ services:
                 volumes:
                         - type: volume
                         source: persist
-                        target: /var/lib/mongo
+                        target: /data/db
         mongo-service:
                 build: ./mongo-service
                 container_name: mongo-service
                 depends_on:
                 - mongo
+        secret-service:
+                build: ./secret-service
+                container_name: secret-service
+                depends_on:
+                - mongo
+        email-service:
+                build: ./email-service
+                container_name: secret-service
+                environment:
+                - GMAIL_USER=ilovedocker123@gmail.com
+                - GMAIL_PASS=ilovedocker!
+                - SERVICE_NAME=emailer
+                depends_on:
+                - mongo
+        account-service:
+                build: ./account-service
+                container_name: account-service
+                depends_on:
+                - secret-service
+                - mongo
+        encryption-service:
+                build: ./encryption-service
+                container_name: encryption-service
+                depends_on:
+                - email-service
+        session-token-service:
+                build: ./session-token-service
+                container_name: session-token-service
+                depends_on:
+                - encryption-service
+        dashboard-service:
+                build: ./dashboard-service
+                container_name: dashboard-service
+                depends_on:
+                - account-service
+        dashboard-client:
+                build: ./dashboard-client
+                container_name: dashboard-service
+        authentication-service:
+                build: ./authentication-service
+                container_name: authentication-service
+                environment:
+                - ACTIVATION_LINK=http://localhost/authentication/api/activate
+                depends_on:
+                - account-service
+                - email-service
+                - session-token-service
+        authentication-client:
+                build: ./authentication-client
+                container_name: authentication-client
+        gateway:
+                build: ./gateway
+                container_name: gateway
+                ports:
+                - target: 80
+                  published: 80
+                depends_on:
+                - dashboard-client
+                - dashboard-service
+                - authentication-service
+                - authentication-client
                         
 volumes:
         mongo: 
