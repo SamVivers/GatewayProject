@@ -53,7 +53,7 @@ services:
                 build: ./authentication-service
                 container_name: authentication-service
                 environment:
-                - ACTIVATION_LINK=http://localhost/authentication/api/activate
+                - ACTIVATION_LINK=http://${IP}/authentication/api/activate
                 depends_on:
                 - account-service
                 - email-service
@@ -67,11 +67,18 @@ services:
                 ports:
                 - target: 80
                   published: 80
+                  protocol: tcp
                 depends_on:
                 - dashboard-client
                 - dashboard-service
                 - authentication-service
                 - authentication-client
+        role-service:
+                build: ./role-service
+                container_name: role-service
+        group-service:
+                build: ./group-service
+                container_name: group-service
                         
 volumes:
         persist: 
