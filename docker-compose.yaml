@@ -19,7 +19,7 @@ services:
                 - mongo-service
         email-service:
                 build: ./email-service
-                container_name: secret-service
+                container_name: email-service
                 environment:
                 - GMAIL_USER=ilovedocker123@gmail.com
                 - GMAIL_PASS=ilovedocker!
@@ -48,7 +48,7 @@ services:
                 - account-service
         dashboard-client:
                 build: ./dashboard-client
-                container_name: dashboard-service
+                container_name: dashboard-client
         authentication-service:
                 build: ./authentication-service
                 container_name: authentication-service
