@@ -1,12 +1,12 @@
-version: '3.7'
+version: '3.3'
 services:
         mongo:
                 image: mongo:latest
                 container_name: mongo
                 volumes:
-                        - type: volume
-                        source: persist
-                        target: /data/db
+                - type: volume
+                  source: persist
+                  target: /data/db
         mongo-service:
                 build: ./mongo-service
                 container_name: mongo-service
@@ -16,7 +16,7 @@ services:
                 build: ./secret-service
                 container_name: secret-service
                 depends_on:
-                - mongo
+                - mongo-service
         email-service:
                 build: ./email-service
                 container_name: secret-service
@@ -25,23 +25,22 @@ services:
                 - GMAIL_PASS=ilovedocker!
                 - SERVICE_NAME=emailer
                 depends_on:
-                - mongo
+                - mongo-service
+                - aes-encryption-service
         account-service:
                 build: ./account-service
                 container_name: account-service
                 depends_on:
                 - secret-service
-                - mongo
-        encryption-service:
-                build: ./encryption-service
-                container_name: encryption-service
-                depends_on:
-                - email-service
+                - mongo-service
+        aes-encryption-service:
+                build: ./aes-encryption-service
+                container_name: aes-encryption-service
         session-token-service:
                 build: ./session-token-service
                 container_name: session-token-service
                 depends_on:
-                - encryption-service
+                - aes-encryption-service
         dashboard-service:
                 build: ./dashboard-service
                 container_name: dashboard-service
@@ -75,4 +74,4 @@ services:
                 - authentication-client
                         
 volumes:
-        mongo: 
+        persist: 
