@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+        mongo:
+                image: mongo:latest
+                container_name: mongo
+                volumes:
+                        - type: volume
+                        source: persist
+                        target: /var/lib/mongo
+        mongo-service:
+                build: ./mongo-service
+                container_name: mongo-service
+                depends_on:
+                - mongo
+                        
+volumes:
+        mongo: 
