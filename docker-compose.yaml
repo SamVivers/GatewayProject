@@ -9,16 +9,19 @@ services:
                   target: /data/db
         mongo-service:
                 build: ./mongo-service
+                image: samvivers/mongo-service
                 container_name: mongo-service
                 depends_on:
                 - mongo
         secret-service:
                 build: ./secret-service
+                image: samvivers/secret-service
                 container_name: secret-service
                 depends_on:
                 - mongo-service
         email-service:
                 build: ./email-service
+                image: samvivers/email-service
                 container_name: email-service
                 environment:
                 - GMAIL_USER=ilovedocker123@gmail.com
@@ -29,29 +32,35 @@ services:
                 - aes-encryption-service
         account-service:
                 build: ./account-service
+                image: samvivers/account-service
                 container_name: account-service
                 depends_on:
                 - secret-service
                 - mongo-service
         aes-encryption-service:
                 build: ./aes-encryption-service
+                image: samvivers/aes-encryption-service
                 container_name: aes-encryption-service
         session-token-service:
                 build: ./session-token-service
+                image: samvivers/session-token-service
                 container_name: session-token-service
                 depends_on:
                 - aes-encryption-service
                 - mongo-service
         dashboard-service:
                 build: ./dashboard-service
+                image: samvivers/dashboard-service
                 container_name: dashboard-service
                 depends_on:
                 - account-service
         dashboard-client:
                 build: ./dashboard-client
+                image: samvivers/dashboard-client
                 container_name: dashboard-client
         authentication-service:
                 build: ./authentication-service
+                image: samvivers/authentication-service
                 container_name: authentication-service
                 environment:
                 - ACTIVATION_LINK=http://${IP}/authentication/api/activate
@@ -61,9 +70,11 @@ services:
                 - session-token-service
         authentication-client:
                 build: ./authentication-client
+                image: samvivers/authentication-client
                 container_name: authentication-client
         gateway:
                 build: ./gateway
+                image: samvivers/gateway
                 container_name: gateway
                 ports:
                 - target: 80
@@ -76,9 +87,11 @@ services:
                 - authentication-client
         role-service:
                 build: ./role-service
+                image: samvivers/role-service
                 container_name: role-service
         group-service:
                 build: ./group-service
+                image: samvivers/group-service
                 container_name: group-service
                         
 volumes:
