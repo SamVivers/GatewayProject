@@ -31,5 +31,7 @@ run the .yaml (make sure you are in the GatewayProject directory)
 ###### docker-compose up -d
   
 in a browser head to http://"your IP"/authentication/register and sign up
+
 activate your account via the auto-sent email
+
 head to http://"your IP"/authentication/login and login
