@@ -3,7 +3,7 @@
 This project consists of several APIs (Application programming interfaces) which provide a secure login, with email verification, to a dashboard where projects may be accessed.
 
 ![alt text](https://raw.githubusercontent.com/SamVivers/images/master/MicroservicesSchema.jpg)
-where the arrow indicate dirrection of dependance (i.e. mongo-service depends on mongo)
+where the arrows indicate dirrection of dependance (i.e. mongo-service depends on mongo)
 
 Each API has a Dockerfile allowing docker-compose to deploy the services.
 
