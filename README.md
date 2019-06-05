@@ -7,6 +7,10 @@ where the arrow indicate dirrection of dependance (i.e. mongo-service depends on
 
 Each API has a Dockerfile allowing docker-compose to deploy the services.
 
+# Prerequisites
+
+a linux system with at least 2 cores and 4gb of ram
+
 # Setup
 
 clone this dirrectory
