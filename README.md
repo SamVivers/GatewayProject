@@ -11,31 +11,31 @@ Each API has a Dockerfile allowing docker-compose to deploy the services.
 
 clone this dirrectory
 
-git clone https://github.com/SamVivers/GatewayProject.git
+  # h6 git clone https://github.com/SamVivers/GatewayProject.git
 
 install Docker
 
-curl https://get.docker.com | sudo bash
+  # h6 curl https://get.docker.com | sudo bash
 
 and give your user permissions
 
-sudo usermod -aG docker $(whoami)
+  # h6 sudo usermod -aG docker $(whoami)
   
 install docker-compose
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s) -$(uname -m)" -o /usr/local/bin/docker-compose
+  # h6 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s) -$(uname -m)" -o /usr/local/bin/docker-compose
 
 and give permissions
 
-sudo chmod +x /usr/local/bin/docker-compose
+  # h6 sudo chmod +x /usr/local/bin/docker-compose
 
 alter the IP environment variable to match your IP address
 
-export IP="your IP" (or you can edit the .env file in this repo)
+  # h6 export IP="your IP" (or you can edit the .env file in this repo)
 
 run the .yaml (make sure you are in the GatewayProject directory)
 
-docker-compose up -d
+  # h6 docker-compose up -d
   
 in a browser head to http://"your IP"/authentication/register and sign up
 activate your account via the auto-sent email
