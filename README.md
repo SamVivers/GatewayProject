@@ -14,38 +14,32 @@ a linux system with at least 2 cores and 4gb of ram
 # Setup
 
 clone this dirrectory
-``` git clone https://github.com/SamVivers/GatewayProject.git
-
+``` 
+git clone https://github.com/SamVivers/GatewayProject.git
 ```
 install Docker
-
-``` curl https://get.docker.com | sudo bash
-
+```
+curl https://get.docker.com | sudo bash
 ```
 and give your user permissions
-
-``` sudo usermod -aG docker $(whoami)
-
+```
+sudo usermod -aG docker $(whoami)
 ```
 install docker-compose
-
-``` sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 and give permissions
-
-``` sudo chmod +x /usr/local/bin/docker-compose
-
+```
+sudo chmod +x /usr/local/bin/docker-compose
 ```
 alter the IP environment variable to match your IP address
-
-``` export IP="your IP" (or you can edit the .env file in this repo)
-
+```
+export IP="your IP" (or you can edit the .env file in this repo)
 ```
 run the .yaml (make sure you are in the GatewayProject directory)
-
-``` docker-compose up -d
-
+```
+docker-compose up -d
 ```
 in a browser head to http://"your IP"/authentication/register and sign up
 
