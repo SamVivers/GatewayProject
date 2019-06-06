@@ -33,9 +33,9 @@ and give permissions
 ```
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-alter the IP environment variable to match your IP address
+alter the IP environment variable to match your IP address (or you can edit the .env file in this repo)
 ```
-export IP=[YOUR_IP] (or you can edit the .env file in this repo)
+export IP=[YOUR_IP]
 ```
 run the .yaml (make sure you are in the GatewayProject directory)
 ```
