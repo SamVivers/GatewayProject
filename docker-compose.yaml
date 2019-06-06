@@ -9,19 +9,19 @@ services:
                   target: /data/db
         mongo-service:
                 build: ./mongo-service
-                image: samvivers/mongo-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/mongo-service:v${BUILD_NUMBER}
                 container_name: mongo-service
                 depends_on:
                 - mongo
         secret-service:
                 build: ./secret-service
-                image: samvivers/secret-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/secret-service:v${BUILD_NUMBER}
                 container_name: secret-service
                 depends_on:
                 - mongo-service
         email-service:
                 build: ./email-service
-                image: samvivers/email-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/email-service:v${BUILD_NUMBER}
                 container_name: email-service
                 environment:
                 - GMAIL_USER=ilovedocker123@gmail.com
@@ -32,35 +32,35 @@ services:
                 - aes-encryption-service
         account-service:
                 build: ./account-service
-                image: samvivers/account-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/account-service:v${BUILD_NUMBER}
                 container_name: account-service
                 depends_on:
                 - secret-service
                 - mongo-service
         aes-encryption-service:
                 build: ./aes-encryption-service
-                image: samvivers/aes-encryption-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/aes-encryption-service:v${BUILD_NUMBER}
                 container_name: aes-encryption-service
         session-token-service:
                 build: ./session-token-service
-                image: samvivers/session-token-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/session-token-service:v${BUILD_NUMBER}
                 container_name: session-token-service
                 depends_on:
                 - aes-encryption-service
                 - mongo-service
         dashboard-service:
                 build: ./dashboard-service
-                image: samvivers/dashboard-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/dashboard-service:v${BUILD_NUMBER}
                 container_name: dashboard-service
                 depends_on:
                 - account-service
         dashboard-client:
                 build: ./dashboard-client
-                image: samvivers/dashboard-client:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/dashboard-client:v${BUILD_NUMBER}
                 container_name: dashboard-client
         authentication-service:
                 build: ./authentication-service
-                image: samvivers/authentication-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/authentication-service:v${BUILD_NUMBER}
                 container_name: authentication-service
                 environment:
                 - ACTIVATION_LINK=http://${IP}/authentication/api/activate
@@ -70,11 +70,11 @@ services:
                 - session-token-service
         authentication-client:
                 build: ./authentication-client
-                image: samvivers/authentication-client:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/authentication-client:v${BUILD_NUMBER}
                 container_name: authentication-client
         gateway:
                 build: ./gateway
-                image: samvivers/gateway:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/gateway:v${BUILD_NUMBER}
                 container_name: gateway
                 ports:
                 - target: 80
@@ -87,11 +87,11 @@ services:
                 - authentication-client
         role-service:
                 build: ./role-service
-                image: samvivers/role-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/role-service:v${BUILD_NUMBER}
                 container_name: role-service
         group-service:
                 build: ./group-service
-                image: samvivers/group-service:v${BUILD_NUMBER}
+                image: ${DOCKER.IO_ACCOUNT}/group-service:v${BUILD_NUMBER}
                 container_name: group-service
                         
 volumes:
