@@ -35,14 +35,14 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 alter the IP environment variable to match your IP address
 ```
-export IP="your IP" (or you can edit the .env file in this repo)
+export IP=[YOUR_IP] (or you can edit the .env file in this repo)
 ```
 run the .yaml (make sure you are in the GatewayProject directory)
 ```
 docker-compose up -d
 ```
-in a browser head to http://"your IP"/authentication/register and sign up
+in a browser head to http://[YOUR_IP]/authentication/register and sign up
 
 activate your account via the auto-sent email
 
-head to http://"your IP"/authentication/login and login
+head to http://[YOUR_IP]/authentication/login and login
